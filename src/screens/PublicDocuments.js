@@ -1,10 +1,14 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Text, Pressable, Image, View } from 'react-native'
+import { Text, Pressable, Image, View, Linking } from 'react-native'
 import { styles } from '../assets/styles/style'
 
 export default PublicDocuments = ({ navigation }) => {
     const [login, setLogin] = useState(true)
+
+    const openWeb = () => {
+        Linking.openURL('https://drive.google.com/drive/folders/11Ceh5ifdtqFFFqmPRlmZ6uEW8WG1VhCx')
+    }
 
     useEffect(() => {
         setLogin(true)
@@ -15,9 +19,7 @@ export default PublicDocuments = ({ navigation }) => {
             <>
                 <Text style={styles.title}>Public Documents</Text>
                 <Pressable
-                    onPress={() => navigation.navigate('Library', {
-                        login
-                    })}
+                    onPress={() => openWeb()}
                 >
                     <View style={styles.containerLink}>
                         <Image

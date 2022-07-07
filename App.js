@@ -6,6 +6,9 @@ import {
 } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
+import { stores } from './src/stores/index';
+import { useEffect, useState } from 'react';
 
 // // import screens
 import Home from "./src/screens/Home"
@@ -51,7 +54,7 @@ const hiddenHeader = (route) => {
 
   switch (hidden) {
     case homeName:
-      return true;
+      return false;
     case event:
       return true;
     case publicDocouments:
@@ -63,16 +66,35 @@ const hiddenHeader = (route) => {
 const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
-  return (
-    <Tab.Navigator
-      screenOptions={() => ({
-        tabBarShowLabel : false,
+  const [navBar, setNavBar] = useState({
+    tabBarShowLabel: false,
+    headerShown: false,
+    tabBarStyle: {
+      backgroundColor: '#fffff',
+      height: 0,
+      margin: -8,
+      paddingBottom: 5,
+    },
+  })
+
+  useEffect(() => {
+    setTimeout(() => {
+      setNavBar({
+        tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#fffff',
-          height: 60,
+          height: 70,
+          margin: -8,
+          paddingBottom: 5,
         },
-      })}
+      })
+    }, 4000);
+  }, [])
+
+  return (
+    <Tab.Navigator
+      screenOptions={navBar}
     >
 
       <Tab.Screen
@@ -140,21 +162,23 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeTabs}
-          options={({ route }) => ({
-            headerTitle: getHeaderTitle(route),
-            headerShown: hiddenHeader(route)
-          })}
-        />
-        <Stack.Screen name="Library" component={LibraryPage} />
-        <Stack.Screen name="Scholarship" component={Scholarship} />
-        <Stack.Screen name="About Us" component={AboutUS} />
-        <Stack.Screen name="News" component={NewsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={stores}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeTabs}
+            options={({ route }) => ({
+              headerTitle: getHeaderTitle(route),
+              headerShown: hiddenHeader(route)
+            })}
+          />
+          <Stack.Screen name="Library" component={LibraryPage} />
+          <Stack.Screen name="Scholarship" component={Scholarship} />
+          <Stack.Screen name="About Us" component={AboutUS} />
+          <Stack.Screen name="News" component={NewsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

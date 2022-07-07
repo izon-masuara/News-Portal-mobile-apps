@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Text, View, Image, Pressable } from 'react-native'
 import { styles } from '../assets/styles/style'
+import { useSelector } from 'react-redux'
 
 const db = [
     {
@@ -46,32 +47,32 @@ const db = [
     },
 ]
 
-
 export default function News() {
     const navigate = useNavigation()
+    const news = useSelector(state => state.images.news)
     return (
-        db.length <= 0 ? <Text>Data not Found</Text> :
-            db.map(el => {
+        news.length <= 0 ? <Text>Data not Found</Text> :
+            news.map(el => {
                 return (
                     <Pressable
-                        key={el.title}
-                        onPress={() => navigate.navigate('News', {
-                            title: el.title,
-                            img: el.img,
-                            postDate: el.postDate,
-                            article : el.article
+                        key={el.img}
+                        onPress={() => navigate.navigate('News',{
+                            title : el.title,
+                            img : el.img,
+                            postDate : el.created_at,
+                            article : el.content
                         })}
                     >
                         <View style={styles.containerNews}>
                             <Image
                                 style={styles.imageNews}
                                 source={{
-                                    uri: el.img
+                                    uri: `http://localhost:3001/api/image/${el.img}`
                                 }}
                             />
                             <View style={styles.textNews}>
                                 <Text style={styles.titleNews}>{el.title}</Text>
-                                <Text style={[styles.textDate]}>{el.postDate}</Text>
+                                <Text style={[styles.textDate]}>{el.created_at}</Text>
                             </View>
                         </View>
                     </Pressable>

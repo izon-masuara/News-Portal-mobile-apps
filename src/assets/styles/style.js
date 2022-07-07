@@ -1,19 +1,21 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+const { width, height } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     containerImages: {
         backgroundColor: '#e3f2fd',
-        height: 220,
+        height: 260,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
     },
     images: {
-        width: '90%',
-        height: 180,
+        width: width - 10,
+        height: 210,
         alignItems: 'center',
-        borderWidth: 2,
         borderRadius: 10,
+        padding: 10,
     },
     containerNews: {
         display: 'flex',
@@ -43,7 +45,7 @@ export const styles = StyleSheet.create({
     },
     containerEvents: {
         backgroundColor: 'white',
-        height: 250,
+        height: height - 400,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -77,40 +79,10 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22
     },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
     button: {
         borderRadius: 20,
         padding: 10,
         elevation: 2
-    },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-        backgroundColor: "#2196F3",
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center"
     },
     newsScreenImg: {
         backgroundColor: 'white',
@@ -120,14 +92,28 @@ export const styles = StyleSheet.create({
         paddingTop: 10,
         marginVertical: 5
     },
-    newsTitle : {
-        paddingVertical : 15,
-        fontSize : 20,
-        fontWeight : '700',
-        fontFamily : 'sans-serif'
+    newsTitle: {
+        paddingVertical: 15,
+        fontSize: 20,
+        fontWeight: '700',
+        fontFamily: 'sans-serif'
     },
-    newsImage : {
-        width : '98%',
-        height : 220
-    }
+    newsImage: {
+        width: width - 10,
+        height: 235
+    },
+    openingContainer: {
+        height : height,
+        backgroundColor : '#b2ebf2',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    openingBox : {
+        height : 50,
+        marginBottom : 150,
+        width : width - 100,
+        alignItems : 'center',
+        justifyContent : 'center',
+    },
 })
