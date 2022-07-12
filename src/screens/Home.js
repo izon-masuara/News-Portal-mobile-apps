@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { View, Image, ScrollView, Text } from 'react-native'
+import { View, Image, FlatList, Text, SafeAreaView, Button } from 'react-native'
 import { styles } from '../assets/styles/style'
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
-import { getImage,getNews } from '../stores/reducer';
+import { getImage } from '../stores/reducer/images';
+import { getNews } from '../stores/reducer/cardNews';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -10,20 +11,23 @@ import { useEffect, useState } from 'react';
 
 import News from '../components/News'
 
-export default HomeScreen = () => {
-    const [loading, setLoading] = useState(true)
-    const imagesId = useSelector(state => state.images.images)
-    const news = useSelector(state => state.images.news)
+export default HomeScreen = ({ navigation }) => {
+    const { data: dataImg, loading: loadImg, error: errImg } = useSelector(state => state.images)
+    const { data, loading, error } = useSelector(state => state.news)
     const dispatch = useDispatch()
     useEffect(() => {
         setTimeout(() => {
             dispatch(getImage())
             dispatch(getNews())
-            setLoading(false)
         }, 4000);
     }, [])
 
-    if (loading === true) {
+    if (errImg) {
+        return <Text>Error</Text>
+    }
+
+
+    if (loadImg) {
         return (
             <View style={styles.openingContainer}>
                 <View>
@@ -34,7 +38,7 @@ export default HomeScreen = () => {
                                 width: 150,
                                 borderRadius: 180
                             }}
-                            source={require('../assets/icons/employees.png')}
+                            source={require('../assets/icons/logo-perhimagi.png')}
                         />
                         <Text style={styles.title}>PERHIMAGI</Text>
                     </View>
@@ -43,30 +47,60 @@ export default HomeScreen = () => {
         )
     }
 
+    const Component = () => {
+        return (
+            <>
+                <View style={styles.containerImages}>
+                    <SwiperFlatList
+                        autoplay
+                        autoplayDelay={3}
+                        autoplayLoop
+                        showPagination
+                        paginationDefaultColor='white'
+                        paginationActiveColor='#00bcd4'
+                        data={dataImg}
+                        renderItem={({ item }) => (
+                            <View style={styles.images}>
+                                <Image
+                                    style={styles.images}
+                                    source={{
+                                        uri: `http://localhost:3001/api/image/${item}`
+                                    }}
+                                />
+                            </View>
+                        )}
+                    />
+                </View>
+                {
+                    error ?
+                        <Text>Error news</Text> :
+                        <>
+                            {
+                                loading ?
+                                    <Text>loading news</Text> :
+                                    <>
+                                        <FlatList
+                                            data={data}
+                                            renderItem={({ item }) => <News news={item} />}
+                                        />
+                                        <Button
+                                            title='Press'
+                                        />
+                                    </>
+                            }
+                        </>
+                }
+            </>
+        )
+    }
+
+
     return (
-        <ScrollView style={{ backgroundColor: '#e3f2fd', padding: 5 }}>
-            <View style={styles.containerImages}>
-                <SwiperFlatList
-                    autoplay
-                    autoplayDelay={3}
-                    autoplayLoop
-                    showPagination
-                    paginationDefaultColor='white'
-                    paginationActiveColor='#00bcd4'
-                    data={imagesId}
-                    renderItem={({ item }) => (
-                        <View style={styles.images}>
-                            <Image
-                                style={styles.images}
-                                source={{
-                                    uri: `http://localhost:3001/api/image/${item}`
-                                }}
-                            />
-                        </View>
-                    )}
-                />
-            </View>
-            <News/>
-        </ScrollView>
+        <SafeAreaView>
+            <FlatList
+                data={[1]}
+                renderItem={() => <Component />}
+            />
+        </SafeAreaView>
     )
 }

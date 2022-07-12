@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import { stores } from './src/stores/index';
 import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // // import screens
 import Home from "./src/screens/Home"
@@ -18,6 +19,7 @@ import LibraryPage from './src/screens/LibraryPage'
 import Scholarship from './src/screens/Scholarship'
 import AboutUS from './src/screens/AboutUS';
 import NewsScreen from './src/screens/NewsScreen';
+import Login from './src/screens/Login'
 
 // // Screen names
 const homeName = 'PERHIMAGI'
@@ -177,6 +179,7 @@ export default function App() {
           <Stack.Screen name="Scholarship" component={Scholarship} />
           <Stack.Screen name="About Us" component={AboutUS} />
           <Stack.Screen name="News" component={NewsScreen} />
+          <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

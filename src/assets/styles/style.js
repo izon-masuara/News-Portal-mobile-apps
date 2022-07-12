@@ -17,6 +17,12 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
     },
+    eventImg: {
+        width: width - 10,
+        height: 210,
+        alignItems: 'center',
+        borderRadius: 10,
+    },
     containerNews: {
         display: 'flex',
         flexDirection: 'row',
@@ -49,7 +55,6 @@ export const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingTop: 10,
         marginVertical: 5
     },
     textEvent: {
@@ -103,17 +108,17 @@ export const styles = StyleSheet.create({
         height: 235
     },
     openingContainer: {
-        height : height,
-        backgroundColor : '#b2ebf2',
+        height: height,
+        backgroundColor: '#b2ebf2',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    openingBox : {
-        height : 50,
-        marginBottom : 150,
-        width : width - 100,
-        alignItems : 'center',
-        justifyContent : 'center',
+    openingBox: {
+        height: 50,
+        marginBottom: 150,
+        width: width - 100,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })

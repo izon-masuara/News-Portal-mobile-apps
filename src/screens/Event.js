@@ -1,52 +1,43 @@
 import * as React from 'react'
 import { Text, View, Image, ScrollView } from 'react-native'
 import { styles } from '../assets/styles/style'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getEvents } from '../stores/reducer/events'
 
 export default EventPage = () => {
+    const dispatch = useDispatch()
+    const { data, loading, error } = useSelector(state => state.events)
+
+    useEffect(() => {
+        dispatch(getEvents())
+    }, [])
+
+    if(error) return <Text>err</Text>
+    if(loading) return <Text>loading</Text>
+
     return (
         <ScrollView style={{ backgroundColor: '#e3f2fd', padding: 5 }}>
-            <View style={styles.containerEvents}>
-                <Image
-                    style={styles.images}
-                    source={{
-                        uri: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBINaR8PpAUOenjmdu43_ELvZ_ZNAFRhK_YQ&usqp=CAU`
-                    }}
-                />
-                <Text style={styles.textEvent}>Event ini merupakan event tahunan yang di selenggarakan ...</Text>
-                <View style={styles.containerNews}>
-                    <View style={styles.textNews}>
-                        <Text style={styles.textDate}>Waktu pelaksanaan : 20 juni 2022</Text>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.containerEvents}>
-                <Image
-                    style={styles.images}
-                    source={{
-                        uri: `https://4.bp.blogspot.com/-GcCrsuda2dE/XH0o7xxmWAI/AAAAAAAAAUw/f4sFEuwGczgHztvxZdNzlJfJsNAMGu6pACLcBGAs/s400/IMG-20190304-WA0029.jpg`
-                    }}
-                />
-                <Text style={styles.textEvent}>Event ini merupakan event tahunan yang di selenggarakan ...</Text>
-                <View style={styles.containerNews}>
-                    <View style={styles.textNews}>
-                        <Text style={styles.textDate}>Waktu pelaksanaan : 22 agustus 2022</Text>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.containerEvents}>
-                <Image
-                    style={styles.images}
-                    source={{
-                        uri: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBINaR8PpAUOenjmdu43_ELvZ_ZNAFRhK_YQ&usqp=CAU`
-                    }}
-                />
-                <Text style={styles.textEvent}>Event ini merupakan event tahunan yang di selenggarakan ...</Text>
-                <View style={styles.containerNews}>
-                    <View style={styles.textNews}>
-                        <Text style={styles.textDate}>Waktu pelaksanaan : 20 juni 2022</Text>
-                    </View>
-                </View>
-            </View>
+            {
+                data.map(el => {
+                    return (
+                        <View style={styles.containerEvents} key={el.img}>
+                            <Image
+                                style={styles.eventImg}
+                                source={{
+                                    uri: `http://localhost:3001/api/image/${el.img}`
+                                }}
+                            />
+                            <Text style={styles.textEvent}>{el.title}</Text>
+                            <View style={styles.containerNews}>
+                                <View style={styles.textNews}>
+                                    <Text style={styles.textDate}>Waktu pelaksanaan : {el.time}</Text>
+                                </View>
+                            </View>
+                        </View>
+                    )
+                })
+            }
         </ScrollView>
     )
 }

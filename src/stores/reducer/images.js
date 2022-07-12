@@ -4,9 +4,9 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api'
 
 const initialState = {
-    images: [],
-    news: [],
-    loading: true
+    data: [],
+    loading: true,
+    error: false
 }
 
 export const getImage = createAsyncThunk(
@@ -16,19 +16,7 @@ export const getImage = createAsyncThunk(
             const { data } = await axios.get(`${baseUrl}/images`)
             return data
         } catch (err) {
-            console.log(err)
-        }
-    }
-)
-
-export const getNews = createAsyncThunk(
-    'GET?GET_NEWS',
-    async () => {
-        try {
-            const { data } = await axios.get(`${baseUrl}/news`)
-            return data
-        } catch (err) {
-            console.log(err)
+            throw err
         }
     }
 )
@@ -39,18 +27,18 @@ export const getNewsImages = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getImage.fulfilled, (state, action) => {
-            state.images = []
+            state.data = []
             if (action.payload.length > 0) {
                 action.payload[0].files_id.forEach(el => {
-                    state.images.push(el)
+                    state.data.push(el)
                 })
             }
-        });
+            state.loading = false
+        })
 
-        builder.addCase(getNews.fulfilled, (state, action) => {
-            state.news = []
-            state.news.push(...action.payload)
-        });
+        builder.addCase(getImage.rejected,(state,action) => {
+            state.error = true
+        })
     }
 })
 

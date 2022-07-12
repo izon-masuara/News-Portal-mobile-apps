@@ -19,7 +19,7 @@ export default NewsScreen = ({ route: { params } }) => {
                     <View style={styles.textNews}>
                         <Text style={[styles.textDate, { paddingBottom: 10 }]}>Post date : {params.postDate}</Text>
                         <Text>
-                            {content(uint8)}
+                            {`${content(uint8)}`}
                         </Text>
                     </View>
                 </View>
