@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Image, FlatList, Text, SafeAreaView, Button } from 'react-native'
+import { View, Image, FlatList, Text, SafeAreaView } from 'react-native'
 import { styles } from '../assets/styles/style'
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { getImage } from '../stores/reducer/images';
@@ -12,13 +12,15 @@ import { useEffect, useState } from 'react';
 import News from '../components/News'
 
 export default HomeScreen = ({ navigation }) => {
-    const { data: dataImg, loading: loadImg, error: errImg } = useSelector(state => state.images)
+    const { data: dataImg,error: errImg } = useSelector(state => state.images)
     const { data, loading, error } = useSelector(state => state.news)
+    const [ loadImg,setLoadImg ] = useState(true)
     const dispatch = useDispatch()
     useEffect(() => {
+        dispatch(getImage())
+        dispatch(getNews())
         setTimeout(() => {
-            dispatch(getImage())
-            dispatch(getNews())
+            setLoadImg(false)
         }, 4000);
     }, [])
 
@@ -62,7 +64,7 @@ export default HomeScreen = ({ navigation }) => {
                         renderItem={({ item }) => (
                             <View style={styles.images}>
                                 <Image
-                                    style={styles.images}
+                                    style={[styles.images,styles.imageHome]}
                                     source={{
                                         uri: `http://localhost:3001/api/image/${item}`
                                     }}
@@ -82,9 +84,6 @@ export default HomeScreen = ({ navigation }) => {
                                         <FlatList
                                             data={data}
                                             renderItem={({ item }) => <News news={item} />}
-                                        />
-                                        <Button
-                                            title='Press'
                                         />
                                     </>
                             }

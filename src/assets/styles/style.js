@@ -4,38 +4,45 @@ const { width, height } = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
     containerImages: {
-        backgroundColor: '#e3f2fd',
         height: 260,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
+        marginBottom : 10
     },
     images: {
-        width: width - 10,
-        height: 210,
+        width: width,
+        height: 235,
         alignItems: 'center',
-        borderRadius: 10,
-        padding: 10,
+    },
+    imageHome: {
+        margin : 20,
+        borderWidth : 1,
+        borderRadius : 10
     },
     eventImg: {
-        width: width - 10,
+        width: '100%',
         height: 210,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 10
     },
     containerNews: {
-        display: 'flex',
         flexDirection: 'row',
         borderWidth: 2,
         borderColor: 'white',
         backgroundColor: 'white',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginVertical: 5
+        marginVertical : 5,
+        marginHorizontal : 3,
+        borderRadius : 10,
+        shadowColor : 'black',
+        elevation : 10,
     },
     imageNews: {
         flex: 1,
-        height: 100
+        height: 100,
+        borderRadius : 10
     },
     textNews: {
         flex: 2,
@@ -44,6 +51,7 @@ export const styles = StyleSheet.create({
     titleNews: {
         fontSize: 20,
         fontWeight: '600',
+        color : '#424242'
     },
     textDate: {
         fontWeight: 'bold',
@@ -55,12 +63,16 @@ export const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        marginVertical: 5
+        marginVertical: 10,
+        elevation : 5,
+        borderRadius : 10,
+        margin : 10
     },
     textEvent: {
         fontSize: 14,
         fontWeight: '600',
-        paddingTop: 10
+        paddingTop: 10,
+        color : '#424242'
     },
     buttonLink: {
         fontWeight: '600',
@@ -72,7 +84,7 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 20,
         paddingBottom: 10,
-        marginLeft: 2
+        marginLeft: 2,
     },
     containerLink: {
         flexDirection: 'row',
@@ -101,11 +113,15 @@ export const styles = StyleSheet.create({
         paddingVertical: 15,
         fontSize: 20,
         fontWeight: '700',
-        fontFamily: 'sans-serif'
+        fontFamily: 'sans-serif',
+        color : "#424242"
     },
     newsImage: {
         width: width - 10,
-        height: 235
+        height: 235,
+        borderWidth : 2,
+        borderColor : 'black',
+        borderRadius : 5,
     },
     openingContainer: {
         height: height,

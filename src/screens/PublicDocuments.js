@@ -12,6 +12,14 @@ export default PublicDocuments = ({ navigation }) => {
         Linking.openURL('https://drive.google.com/drive/folders/11Ceh5ifdtqFFFqmPRlmZ6uEW8WG1VhCx')
     }
 
+    const openScholarship = () => {
+        Linking.openURL('https://drive.google.com/drive/folders/1DT-B1fHk5EDkKuqQJZ0uWTWrh-uOnH5E')
+    }
+
+    const openHistory = () => {
+        Linking.openURL('https://www.perhimagi.com/sejarah/')
+    }
+
     const logout = async () => {
         try {
             await AsyncStorage.clear()
@@ -61,7 +69,7 @@ export default PublicDocuments = ({ navigation }) => {
                     </View>
                 </Pressable>
                 <Pressable
-                    onPress={() => navigation.navigate('Scholarship')}
+                    onPress={() => openScholarship()}
                 >
                     <View style={styles.containerLink}>
                         <Image
@@ -77,7 +85,7 @@ export default PublicDocuments = ({ navigation }) => {
                 </Pressable>
                 <Text style={styles.title}>About Us</Text>
                 <Pressable
-                    onPress={() => navigation.navigate('About Us')}
+                    onPress={() => openHistory()}
                 >
                     <View style={styles.containerLink}>
                         <Image

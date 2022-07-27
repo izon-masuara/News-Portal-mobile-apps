@@ -15,7 +15,9 @@ export const hitLogin = createAsyncThunk(
     async (payload) => {
         try {
             const { data } = await axios.post(`${baseUrl}/login`,payload)
-            await AsyncStorage.setItem("token",data)
+            const { token,role } = data
+            await AsyncStorage.setItem("token",token)
+            await AsyncStorage.setItem("role", role)
             return data
         } catch (err) {
             throw err

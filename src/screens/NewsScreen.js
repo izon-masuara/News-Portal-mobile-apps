@@ -17,12 +17,12 @@ export default NewsScreen = ({ route: { params } }) => {
                 />
                 <View style={styles.containerNews}>
                     <View style={styles.textNews}>
-                        <Text style={[styles.textDate, { paddingBottom: 10 }]}>Post date : {params.postDate}</Text>
-                        <Text>
-                            {`${content(uint8)}`}
-                        </Text>
+                        <Text style={styles.textDate}>Post date : {params.postDate}</Text>
                     </View>
                 </View>
+                <Text style={styles.textNews}>
+                    {`${content(uint8)}`}
+                </Text>
             </View>
         </ScrollView>
     )

@@ -28,11 +28,9 @@ export const getNewsImages = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getImage.fulfilled, (state, action) => {
             state.data = []
-            if (action.payload.length > 0) {
-                action.payload[0].files_id.forEach(el => {
-                    state.data.push(el)
-                })
-            }
+            action.payload.forEach(el => {
+                state.data.push(el.files_id)
+            })
             state.loading = false
         })
 

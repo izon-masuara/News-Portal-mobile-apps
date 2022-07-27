@@ -17,7 +17,7 @@ export default EventPage = () => {
     if(loading) return <Text>loading</Text>
 
     return (
-        <ScrollView style={{ backgroundColor: '#e3f2fd', padding: 5 }}>
+        <ScrollView style={{padding: 5 }}>
             {
                 data.map(el => {
                     return (
