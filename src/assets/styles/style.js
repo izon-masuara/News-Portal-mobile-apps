@@ -59,20 +59,21 @@ export const styles = StyleSheet.create({
     },
     containerEvents: {
         backgroundColor: 'white',
-        height: height - 400,
+        height: height - 360,
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
         marginVertical: 10,
         elevation : 5,
         borderRadius : 10,
-        margin : 10
+        margin : 10,
+        padding : 10
     },
     textEvent: {
         fontSize: 14,
         fontWeight: '600',
         paddingTop: 10,
-        color : '#424242'
+        color : '#424242',
     },
     buttonLink: {
         fontWeight: '600',
@@ -106,8 +107,6 @@ export const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingTop: 10,
-        marginVertical: 5
     },
     newsTitle: {
         paddingVertical: 15,

@@ -100,7 +100,7 @@ export default PublicDocuments = ({ navigation }) => {
                     </View>
                 </Pressable>
                 <Pressable
-                    onPress={() => navigation.navigate('About Us')}
+                    onPress={() => navigation.navigate('Organitation')}
                 >
                     <View style={styles.containerLink}>
                         <Image
@@ -112,21 +112,6 @@ export default PublicDocuments = ({ navigation }) => {
                             }}
                         />
                         <Text style={styles.buttonLink}>Organizational Structure</Text>
-                    </View>
-                </Pressable>
-                <Pressable
-                    onPress={() => navigation.navigate('About Us')}
-                >
-                    <View style={styles.containerLink}>
-                        <Image
-                            source={require('../assets/icons/working-time.png')}
-                            resizeMode="contain"
-                            style={{
-                                width: 20,
-                                height: 20,
-                            }}
-                        />
-                        <Text style={styles.buttonLink}>Annual work programme</Text>
                     </View>
                 </Pressable>
                 <Pressable
@@ -220,21 +205,6 @@ export default PublicDocuments = ({ navigation }) => {
                                 }}
                             />
                             <Text style={styles.buttonLink}>Organizational Structure</Text>
-                        </View>
-                    </Pressable>
-                    <Pressable
-                        onPress={() => navigation.navigate('Login')}
-                    >
-                        <View style={styles.containerLink}>
-                            <Image
-                                source={require('../assets/icons/working-time.png')}
-                                resizeMode="contain"
-                                style={{
-                                    width: 20,
-                                    height: 20,
-                                }}
-                            />
-                            <Text style={styles.buttonLink}>Annual work programme</Text>
                         </View>
                     </Pressable>
                     <Pressable

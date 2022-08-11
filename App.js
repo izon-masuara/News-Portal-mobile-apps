@@ -20,6 +20,8 @@ import Scholarship from './src/screens/Scholarship'
 import AboutUS from './src/screens/AboutUS';
 import NewsScreen from './src/screens/NewsScreen';
 import Login from './src/screens/Login'
+import Organitation from './src/screens/Organitation';
+import OrganitationScreen from './src/components/OrganitationScreen';
 
 // // Screen names
 const homeName = 'PERHIMAGI'
@@ -180,6 +182,8 @@ export default function App() {
           <Stack.Screen name="About Us" component={AboutUS} />
           <Stack.Screen name="News" component={NewsScreen} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Organitation" component={Organitation} />
+          <Stack.Screen name="Organitation Screen" component={OrganitationScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
