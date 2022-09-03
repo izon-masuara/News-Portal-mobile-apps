@@ -4,6 +4,7 @@ import { styles } from '../assets/styles/style'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getEvents } from '../stores/reducer/events'
+import { baseUrl } from '../stores/reducer/config'
 
 export default EventPage = () => {
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ export default EventPage = () => {
                             <Image
                                 style={styles.eventImg}
                                 source={{
-                                    uri: `http://localhost:3001/api/image/${el.img}`
+                                    uri: `${baseUrl}/image/${el.img}`
                                 }}
                             />
                             <Text style={styles.textEvent}>{el.title}</Text>

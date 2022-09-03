@@ -182,8 +182,20 @@ export default function App() {
           <Stack.Screen name="About Us" component={AboutUS} />
           <Stack.Screen name="News" component={NewsScreen} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Organitation" component={Organitation} />
-          <Stack.Screen name="Organitation Screen" component={OrganitationScreen} />
+          <Stack.Screen
+            name="Organitation"
+            component={Organitation}
+            options={{
+              headerShown : false
+            }}
+          />
+          <Stack.Screen
+            name="Organitation Screen"
+            component={OrganitationScreen}
+            options={{
+              headerShown: false
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

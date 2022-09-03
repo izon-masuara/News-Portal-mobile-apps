@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Text, View, Image, Pressable } from 'react-native'
 import { styles } from '../assets/styles/style'
+import { baseUrl } from '../stores/reducer/config'
 
 export default function News({ news }) {
     const navigate = useNavigation()
@@ -20,7 +21,7 @@ export default function News({ news }) {
                 <Image
                     style={styles.imageNews}
                     source={{
-                        uri: `http://localhost:3001/api/image/${news.img}`
+                        uri: `${baseUrl}/image/${news.img}`
                     }}
                 />
                 <View style={styles.textNews}>

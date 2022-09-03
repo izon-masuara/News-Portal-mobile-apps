@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, Image } from 'react-native'
 import { styles } from "../assets/styles/style";
 import content from 'arraybuffer-to-string'
+import { baseUrl } from "../stores/reducer/config";
 
 export default NewsScreen = ({ route: { params } }) => {
     const uint8 = new Uint8Array(params.article.data)
@@ -12,7 +13,7 @@ export default NewsScreen = ({ route: { params } }) => {
                 <Image
                     style={styles.newsImage}
                     source={{
-                        uri: `http://localhost:3001/api/image/${params.img}`
+                        uri: `${baseUrl}/image/${params.img}`
                     }}
                 />
                 <View style={styles.containerNews}>

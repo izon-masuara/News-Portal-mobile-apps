@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-const baseUrl = 'http://localhost:3001/api'
+import { baseUrl } from './config'
 
 const initialState = {
     data: [],
@@ -32,6 +31,11 @@ export const getNewsImages = createSlice({
                 state.data.push(el.files_id)
             })
             state.loading = false
+            state.error = false
+        })
+
+        builder.addCase(getImage.pending,(state,action) => {
+            state.loading = true
         })
 
         builder.addCase(getImage.rejected,(state,action) => {

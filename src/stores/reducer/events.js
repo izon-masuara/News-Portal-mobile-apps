@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-const baseUrl = 'http://localhost:3001/api'
+import { baseUrl } from './config'
 
 const initialState = {
     data : [],
@@ -30,7 +29,12 @@ export const getEventsReducer = createSlice({
             state.data = []
             state.data.push(...action.payload)
             state.loading = false
+            state.error = false
         }),
+
+        builder.addCase(getEvents.pending,(state,action) => {
+            state.loading = true
+        })
 
         builder.addCase(getEvents.rejected,(state,action) => {
             state.error = true
